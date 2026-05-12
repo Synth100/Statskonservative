@@ -762,3 +762,67 @@ blockquote::before {
     padding: 3.5rem 0;
   }
 }
+
+/* Privatlivspolitik */
+
+.legal-page {
+  background:
+    linear-gradient(180deg, #f7faff, #eef4fb);
+}
+
+.legal-card {
+  max-width: 860px;
+  margin-inline: auto;
+  padding: clamp(1.4rem, 4vw, 2.4rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.legal-card h1 {
+  margin: 0 0 0.75rem;
+  color: var(--navy);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+
+.legal-card h2 {
+  max-width: none;
+  margin-top: 2rem;
+  margin-bottom: 0.65rem;
+  font-size: clamp(1.25rem, 3vw, 1.65rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.legal-card p,
+.legal-card li {
+  color: var(--muted);
+}
+
+.legal-card a {
+  color: var(--blue);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.legal-card ul {
+  padding-left: 1.25rem;
+}
+
+.legal-card li {
+  margin-bottom: 0.35rem;
+}
+
+.legal-meta {
+  margin-top: 0;
+  font-weight: 800;
+  color: var(--navy) !important;
+}
+
+.legal-return {
+  margin-top: 2rem;
+}

@@ -123,7 +123,7 @@ export default async function handler(request, response) {
         });
 
         const consentText =
-            "I consent to being contacted by Statskonservative about membership, activities, and related information.";
+            "Jeg giver udtrykkeligt samtykke til, at Statskonservative må behandle mine oplysninger for at kontakte mig om medlemskab, nyheder, aktiviteter og lokal opbygning. Jeg er informeret om, at min tilmelding kan afsløre politisk interesse, og at jeg til enhver tid kan trække mit samtykke tilbage ved at skrive til kontakt@statskonservative.dk. Jeg har læst privatlivspolitikken.";
 
         const payload = {
             first_name: firstName,
