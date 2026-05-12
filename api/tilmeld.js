@@ -123,7 +123,7 @@ export default async function handler(request, response) {
         });
 
         const consentText =
-            "I consent to being contacted by Det Nationale Kristendemokratiske Parti about membership, activities, and related information.";
+            "I consent to being contacted by Statskonservative about membership, activities, and related information.";
 
         const payload = {
             first_name: firstName,

@@ -19,4 +19,4 @@ alter table public.signups enable row level security;
 revoke all on table public.signups from anon, authenticated;
 
 comment on table public.signups is
-  'Political website signups collected via the NKP public website.';
+  'Political website signups collected via the Statskonservative public website.';
