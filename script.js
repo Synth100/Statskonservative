@@ -6,12 +6,15 @@ const submitButton = document.getElementById("submit-button");
 const formStatus = document.getElementById("form-status");
 const year = document.getElementById("year");
 
+const defaultSubmitText = "Send tilmelding";
+
 if (year) {
   year.textContent = new Date().getFullYear();
 }
 
 function closeMenu() {
   if (!menuToggle || !navLinks) return;
+
   menuToggle.classList.remove("active");
   navLinks.classList.remove("open");
   menuToggle.setAttribute("aria-expanded", "false");
@@ -21,6 +24,7 @@ function closeMenu() {
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
     const nowOpen = !navLinks.classList.contains("open");
+
     navLinks.classList.toggle("open", nowOpen);
     menuToggle.classList.toggle("active", nowOpen);
     menuToggle.setAttribute("aria-expanded", String(nowOpen));
@@ -44,6 +48,7 @@ if (menuToggle && navLinks) {
 
 function setStatus(message, type = "") {
   if (!formStatus) return;
+
   formStatus.textContent = message;
   formStatus.classList.remove("is-success", "is-error");
 
@@ -69,40 +74,46 @@ if (signupForm) {
     event.preventDefault();
 
     const formData = new FormData(signupForm);
+
     const payload = {
       firstName: normalizeText(formData.get("firstName")),
       lastName: normalizeText(formData.get("lastName")),
       email: normalizeText(formData.get("email")).toLowerCase(),
       postcode: normalizeText(formData.get("postcode")),
       interestArea: normalizeText(formData.get("interestArea")),
-      sourcePage: normalizeText(formData.get("sourcePage")) || "homepage",
+      sourcePage:
+        normalizeText(formData.get("sourcePage")) ||
+        "statskonservative-homepage",
       botField: normalizeText(formData.get("botField")),
       consent: signupForm.elements.consent.checked
     };
 
     if (payload.firstName.length < 2) {
-      setStatus("Please enter a valid first name.", "error");
+      setStatus("Skriv et fornavn på mindst 2 tegn.", "error");
       return;
     }
 
     if (payload.lastName.length < 2) {
-      setStatus("Please enter a valid last name.", "error");
+      setStatus("Skriv et efternavn på mindst 2 tegn.", "error");
       return;
     }
 
     if (!isValidEmail(payload.email)) {
-      setStatus("Please enter a valid email address.", "error");
+      setStatus("Skriv en gyldig e-mailadresse.", "error");
       return;
     }
 
     if (!payload.consent) {
-      setStatus("You must consent before submitting the form.", "error");
+      setStatus("Du skal give samtykke, før du kan sende formularen.", "error");
       return;
     }
 
-    submitButton.disabled = true;
-    submitButton.textContent = "Submitting...";
-    setStatus("Submitting your signup...");
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Sender...";
+    }
+
+    setStatus("Sender din tilmelding...");
 
     try {
       const response = await fetch("/api/tilmeld", {
@@ -121,24 +132,30 @@ if (signupForm) {
       } catch {
         result = {
           ok: false,
-          message: "Unexpected server response."
+          message: "Serveren gav et uventet svar."
         };
       }
 
       if (!response.ok || !result.ok) {
-        throw new Error(result.message || "Signup failed.");
+        throw new Error(result.message || "Tilmeldingen kunne ikke sendes.");
       }
 
       signupForm.reset();
-      setStatus(result.message || "Thank you. Your signup has been saved.", "success");
+
+      setStatus(
+        result.message || "Tak. Din tilmelding er blevet gemt.",
+        "success"
+      );
     } catch (error) {
       setStatus(
-        error.message || "Something went wrong. Please try again.",
+        error.message || "Noget gik galt. Prøv igen om lidt.",
         "error"
       );
     } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = "Submit signup";
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = defaultSubmitText;
+      }
     }
   });
 }
