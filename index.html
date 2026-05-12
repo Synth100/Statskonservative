@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta
+    name="description"
+    content="Official website starter for Det Nationale Kristendemokratiske Parti."
+  >
+  <title>Det Nationale Kristendemokratiske Parti</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body id="top">
+  <!-- Upload these files into /images:
+       NKP.jpeg, christiansborg.jpg, dannebrog.jpg, familie.jpg,
+       folkestyre.jpg, graense.jpg, kirke.jpg, natur.jpg, europa.jpg, velfaerd.jpg
+  -->
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a href="#top" class="brand" aria-label="Go to the top of the page">
+        <img
+          src="images/NKP.jpeg"
+          alt="Logo of Det Nationale Kristendemokratiske Parti"
+          class="brand-logo"
+        >
+        <span class="brand-text">Det Nationale Kristendemokratiske Parti</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-links"
+        aria-label="Open navigation menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#priorities">Priorities</a></li>
+        <li><a href="#programme">Programme</a></li>
+        <li><a href="#join">Join</a></li>
+        <li><a href="#contact" class="nav-button">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">National responsibility. Christian heritage. Social responsibility.</p>
+          <h1>Building a rooted, responsible, and sovereign Denmark.</h1>
+          <p class="hero-lead">
+            This starter site is designed for Det Nationale Kristendemokratiske Parti
+            and includes a responsive homepage, a real signup form, and a backend
+            architecture that can be deployed publicly.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#join" class="primary-button">Join the movement</a>
+            <a href="#programme" class="secondary-button">Read the programme</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <img
+            src="images/NKP.jpeg"
+            alt="Det Nationale Kristendemokratiske Parti emblem"
+            class="hero-panel-logo"
+          >
+          <h2>Core commitments</h2>
+          <ul class="hero-points">
+            <li>National sovereignty and democratic accountability</li>
+            <li>Family, duty, and social cohesion</li>
+            <li>Christian values in the public moral framework</li>
+            <li>A welfare state tied to responsibility and contribution</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container split-layout">
+        <div>
+          <p class="section-kicker">About NKP</p>
+          <h2>A party website built like a real public website, not a local demo file.</h2>
+          <p>
+            The purpose of this project is to give NKP a proper public-facing website:
+            branded visuals, a responsive layout, a clear programme structure,
+            and a signup flow that actually stores submissions in a hosted database.
+          </p>
+          <p>
+            The design below is intentionally simple to maintain. You can later expand
+            it with extra pages such as a party report, manifesto transcript, policy PDFs,
+            press releases, or a members-only area.
+          </p>
+        </div>
+
+        <div class="image-stack">
+          <img
+            src="images/christiansborg.jpg"
+            alt="Placeholder image for parliament or national institutions"
+          >
+          <img
+            src="images/folkestyre.jpg"
+            alt="Placeholder image for democracy and civic participation"
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="priorities" class="section section-muted">
+      <div class="container">
+        <p class="section-kicker">Core priorities</p>
+        <h2>The platform at a glance</h2>
+
+        <div class="card-grid">
+          <article class="issue-card">
+            <img
+              src="images/familie.jpg"
+              alt="Placeholder image for family policy"
+            >
+            <div class="issue-card-content">
+              <h3>Family and responsibility</h3>
+              <p>
+                Strong families, stable communities, and a social order built on
+                duty, care, and long-term cohesion.
+              </p>
+            </div>
+          </article>
+
+          <article class="issue-card">
+            <img
+              src="images/kirke.jpg"
+              alt="Placeholder image for Christianity and values"
+            >
+            <div class="issue-card-content">
+              <h3>Christian values</h3>
+              <p>
+                A public culture that respects Christianity as a foundational source
+                of moral language, restraint, dignity, and justice.
+              </p>
+            </div>
+          </article>
+
+          <article class="issue-card">
+            <img
+              src="images/velfaerd.jpg"
+              alt="Placeholder image for welfare and public institutions"
+            >
+            <div class="issue-card-content">
+              <h3>Welfare with obligations</h3>
+              <p>
+                A strong welfare state, but one tied to work, contribution, and
+                reciprocal social responsibility.
+              </p>
+            </div>
+          </article>
+
+          <article class="issue-card">
+            <img
+              src="images/graense.jpg"
+              alt="Placeholder image for borders and migration policy"
+            >
+            <div class="issue-card-content">
+              <h3>Borders and integration</h3>
+              <p>
+                Controlled migration, real integration requirements, and a state
+                capable of enforcing its laws and borders.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="programme" class="section">
+      <div class="container">
+        <p class="section-kicker">Programme</p>
+        <h2>Detailed policy themes</h2>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <img
+              src="images/europa.jpg"
+              alt="Placeholder image for Europe and sovereignty"
+            >
+            <div class="detail-card-body">
+              <h3>Europe of nations</h3>
+              <p>
+                Cooperation between states is acceptable, but power should remain
+                rooted as closely as possible in national democratic communities.
+              </p>
+            </div>
+          </article>
+
+          <article class="detail-card">
+            <img
+              src="images/natur.jpg"
+              alt="Placeholder image for nature and stewardship"
+            >
+            <div class="detail-card-body">
+              <h3>Stewardship and realism</h3>
+              <p>
+                Nature should be protected, but environmental policy must not become
+                a tool for social decline, economic self-harm, or symbolic politics.
+              </p>
+            </div>
+          </article>
+
+          <article class="detail-card">
+            <img
+              src="images/christiansborg.jpg"
+              alt="Placeholder image for parliament and institutions"
+            >
+            <div class="detail-card-body">
+              <h3>Institutions that hold society together</h3>
+              <p>
+                Parliament, law, schools, and civic institutions should reinforce
+                continuity, responsibility, and national coherence.
+              </p>
+            </div>
+          </article>
+
+          <article class="detail-card">
+            <img
+              src="images/dannebrog.jpg"
+              alt="Placeholder image for flag and national identity"
+            >
+            <div class="detail-card-body">
+              <h3>Culture, continuity, identity</h3>
+              <p>
+                National culture is not a private hobby. It is part of the shared
+                inheritance a society has a right to defend and pass on.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-quote">
+      <div class="container quote-layout">
+        <img
+          src="images/folkestyre.jpg"
+          alt="Placeholder image for citizenship and democratic culture"
+        >
+        <blockquote>
+          “A strong society is not only prosperous. It is morally coherent, socially
+          responsible, culturally rooted, and capable of governing itself.”
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="join" class="section section-muted">
+      <div class="container join-grid">
+        <div class="form-copy">
+          <p class="section-kicker">Join NKP</p>
+          <h2>Become part of the movement</h2>
+          <p>
+            This form is wired to a real backend route and a hosted database. Once
+            deployed properly, it can store signups instead of only showing a demo
+            message in the browser.
+          </p>
+          <p class="privacy-note">
+            Important: because this is a political-party signup, your privacy notice
+            and consent wording must be handled seriously before any real public launch.
+          </p>
+        </div>
+
+        <form id="signup-form" class="signup-form">
+          <div class="form-row">
+            <div class="field">
+              <label for="firstName">First name</label>
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                minlength="2"
+                maxlength="80"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="lastName">Last name</label>
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                minlength="2"
+                maxlength="80"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              maxlength="150"
+              required
+            >
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="postcode">Postcode (optional)</label>
+              <input
+                id="postcode"
+                name="postcode"
+                type="text"
+                maxlength="20"
+              >
+            </div>
+
+            <div class="field">
+              <label for="interestArea">Main interest</label>
+              <select id="interestArea" name="interestArea">
+                <option value="">Select one</option>
+                <option value="membership">Membership</option>
+                <option value="newsletter">Newsletter</option>
+                <option value="volunteering">Volunteering</option>
+                <option value="local-branch">Local branch</option>
+                <option value="general">General information</option>
+              </select>
+            </div>
+          </div>
+
+          <input type="hidden" name="sourcePage" value="homepage">
+
+          <div class="honeypot" aria-hidden="true">
+            <label for="botField">Leave this field empty</label>
+            <input
+              id="botField"
+              name="botField"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+            >
+          </div>
+
+          <label class="checkbox-row">
+            <input id="consent" name="consent" type="checkbox" required>
+            <span>
+              I consent to being contacted by Det Nationale Kristendemokratiske Parti
+              about membership, activities, and related information.
+            </span>
+          </label>
+
+          <button class="primary-button" id="submit-button" type="submit">
+            Submit signup
+          </button>
+
+          <p id="form-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h2>Det Nationale Kristendemokratiske Parti</h2>
+        <p>
+          Starter site for a deployable political website with a real signup workflow.
+        </p>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <p>Email: <a href="mailto:kontakt@nkp.dk">kontakt@nkp.dk</a></p>
+        <p>Press: <a href="mailto:presse@nkp.dk">presse@nkp.dk</a></p>
+      </div>
+
+      <div>
+        <h3>Legal</h3>
+        <p>Privacy notice to be completed before public launch.</p>
+        <p>&copy; <span id="year"></span> NKP</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

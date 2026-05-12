@@ -1,0 +1,144 @@
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+const navAnchors = document.querySelectorAll("#nav-links a");
+const signupForm = document.getElementById("signup-form");
+const submitButton = document.getElementById("submit-button");
+const formStatus = document.getElementById("form-status");
+const year = document.getElementById("year");
+
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
+
+function closeMenu() {
+  if (!menuToggle || !navLinks) return;
+  menuToggle.classList.remove("active");
+  navLinks.classList.remove("open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("menu-open");
+}
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    const nowOpen = !navLinks.classList.contains("open");
+    navLinks.classList.toggle("open", nowOpen);
+    menuToggle.classList.toggle("active", nowOpen);
+    menuToggle.setAttribute("aria-expanded", String(nowOpen));
+    document.body.classList.toggle("menu-open", nowOpen);
+  });
+
+  navAnchors.forEach((anchor) => {
+    anchor.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      window.innerWidth <= 900 &&
+      navLinks.classList.contains("open") &&
+      !event.target.closest(".navbar")
+    ) {
+      closeMenu();
+    }
+  });
+}
+
+function setStatus(message, type = "") {
+  if (!formStatus) return;
+  formStatus.textContent = message;
+  formStatus.classList.remove("is-success", "is-error");
+
+  if (type === "success") {
+    formStatus.classList.add("is-success");
+  }
+
+  if (type === "error") {
+    formStatus.classList.add("is-error");
+  }
+}
+
+function normalizeText(value) {
+  return String(value || "").trim().replace(/\s+/g, " ");
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+if (signupForm) {
+  signupForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(signupForm);
+    const payload = {
+      firstName: normalizeText(formData.get("firstName")),
+      lastName: normalizeText(formData.get("lastName")),
+      email: normalizeText(formData.get("email")).toLowerCase(),
+      postcode: normalizeText(formData.get("postcode")),
+      interestArea: normalizeText(formData.get("interestArea")),
+      sourcePage: normalizeText(formData.get("sourcePage")) || "homepage",
+      botField: normalizeText(formData.get("botField")),
+      consent: signupForm.elements.consent.checked
+    };
+
+    if (payload.firstName.length < 2) {
+      setStatus("Please enter a valid first name.", "error");
+      return;
+    }
+
+    if (payload.lastName.length < 2) {
+      setStatus("Please enter a valid last name.", "error");
+      return;
+    }
+
+    if (!isValidEmail(payload.email)) {
+      setStatus("Please enter a valid email address.", "error");
+      return;
+    }
+
+    if (!payload.consent) {
+      setStatus("You must consent before submitting the form.", "error");
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
+    setStatus("Submitting your signup...");
+
+    try {
+      const response = await fetch("/api/tilmeld", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      let result;
+
+      try {
+        result = await response.json();
+      } catch {
+        result = {
+          ok: false,
+          message: "Unexpected server response."
+        };
+      }
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || "Signup failed.");
+      }
+
+      signupForm.reset();
+      setStatus(result.message || "Thank you. Your signup has been saved.", "success");
+    } catch (error) {
+      setStatus(
+        error.message || "Something went wrong. Please try again.",
+        "error"
+      );
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "Submit signup";
+    }
+  });
+}
