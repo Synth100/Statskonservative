@@ -4,13 +4,13 @@ const navAnchors = document.querySelectorAll("#nav-links a");
 const signupForm = document.getElementById("signup-form");
 const submitButton = document.getElementById("submit-button");
 const formStatus = document.getElementById("form-status");
-const year = document.getElementById("year");
+const yearElements = document.querySelectorAll("#year");
 
 const defaultSubmitText = "Send tilmelding";
 
-if (year) {
+yearElements.forEach((year) => {
   year.textContent = new Date().getFullYear();
-}
+});
 
 function closeMenu() {
   if (!menuToggle || !navLinks) return;

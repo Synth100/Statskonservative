@@ -139,7 +139,8 @@ a {
 }
 
 .nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:focus-visible,
+.nav-links a.active {
   color: var(--blue);
   background: var(--blue-soft);
 }
@@ -151,7 +152,8 @@ a {
 }
 
 .nav-button:hover,
-.nav-button:focus-visible {
+.nav-button:focus-visible,
+.nav-button.active {
   background: var(--blue) !important;
   color: #ffffff !important;
 }
@@ -270,7 +272,8 @@ a {
 /* Knapper */
 
 .primary-button,
-.secondary-button {
+.secondary-button,
+.section-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -278,7 +281,6 @@ a {
   padding: 0.86rem 1.25rem;
   border-radius: 999px;
   font-weight: 800;
-  border: 0;
   cursor: pointer;
   transition:
     transform 0.2s ease,
@@ -290,6 +292,7 @@ a {
 .primary-button {
   background: var(--gold);
   color: var(--navy);
+  border: 0;
   box-shadow: 0 14px 28px rgba(201, 162, 74, 0.26);
 }
 
@@ -299,10 +302,20 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.22);
 }
 
+.section-button {
+  background: var(--navy);
+  color: #ffffff;
+  border: 1px solid var(--navy);
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+
 .primary-button:hover,
 .secondary-button:hover,
+.section-button:hover,
 .primary-button:focus-visible,
-.secondary-button:focus-visible {
+.secondary-button:focus-visible,
+.section-button:focus-visible {
   transform: translateY(-2px);
   filter: brightness(1.04);
 }
@@ -315,7 +328,8 @@ a {
 
 /* Hero-panel */
 
-.hero-panel {
+.hero-panel,
+.page-hero-card {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-lg);
@@ -334,7 +348,8 @@ a {
   padding: 0.2rem;
 }
 
-.hero-panel h2 {
+.hero-panel h2,
+.page-hero-card h2 {
   margin: 0 0 0.75rem;
   font-size: 1.35rem;
 }
@@ -347,6 +362,50 @@ a {
 
 .hero-points li {
   margin-bottom: 0.45rem;
+}
+
+/* Page hero */
+
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 4.5rem 0;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at top right, rgba(201, 162, 74, 0.18), transparent 30%),
+    linear-gradient(135deg, var(--navy), var(--navy-2));
+}
+
+.page-hero-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.page-hero h1 {
+  margin: 0 0 1rem;
+  max-width: 13ch;
+  font-size: clamp(2.15rem, 5vw, 4.1rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.page-hero p {
+  max-width: 65ch;
+  color: #e7eefc;
+}
+
+.page-hero-card {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.page-hero-image img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
 }
 
 /* Sektioner */
@@ -371,6 +430,18 @@ a {
 
 .section p {
   font-size: 1rem;
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1.5rem;
+}
+
+.section-side-text {
+  max-width: 34ch;
+  color: var(--muted);
 }
 
 .split-layout {
@@ -415,14 +486,21 @@ a {
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 1.15rem;
   margin-top: 2rem;
 }
 
+.issue-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .issue-card,
 .detail-card,
-.signup-form {
+.signup-form,
+.policy-card,
+.person-card,
+.policy-article,
+.policy-sidebar {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -430,7 +508,9 @@ a {
 }
 
 .issue-card,
-.detail-card {
+.detail-card,
+.policy-card,
+.person-card {
   overflow: hidden;
   transition:
     transform 0.2s ease,
@@ -439,10 +519,21 @@ a {
 }
 
 .issue-card:hover,
-.detail-card:hover {
+.detail-card:hover,
+.policy-card:hover,
+.person-card:hover,
+.issue-card:focus-visible,
+.policy-card:focus-visible {
   transform: translateY(-5px);
   box-shadow: var(--shadow);
   border-color: rgba(21, 90, 168, 0.24);
+}
+
+.issue-link {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  min-height: 100%;
 }
 
 .issue-card img {
@@ -451,11 +542,16 @@ a {
 }
 
 .issue-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 1.2rem;
 }
 
 .issue-card h3,
-.detail-card h3 {
+.detail-card h3,
+.policy-card h3,
+.person-card h3 {
   margin: 0 0 0.6rem;
   font-size: 1.18rem;
   line-height: 1.2;
@@ -465,8 +561,22 @@ a {
 .issue-card p,
 .detail-card p,
 .form-copy p,
-.footer-grid p {
+.footer-grid p,
+.policy-card p,
+.person-card p,
+.policy-article p,
+.policy-article li,
+.policy-sidebar a,
+.section-side-text {
   color: var(--muted);
+}
+
+.card-link-text,
+.policy-card span,
+.detail-card a {
+  margin-top: auto;
+  color: var(--blue);
+  font-weight: 850;
 }
 
 .detail-grid {
@@ -482,7 +592,202 @@ a {
 }
 
 .detail-card-body {
+  display: grid;
+  gap: 0.5rem;
   padding: 1.25rem;
+}
+
+.detail-card-body p {
+  margin: 0;
+}
+
+/* Politikside */
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.15rem;
+  margin-top: 2rem;
+}
+
+.policy-card {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 1rem;
+  padding: 1rem;
+  min-height: 100%;
+}
+
+.policy-card-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.policy-number {
+  margin: 0 0 0.4rem;
+  color: var(--gold) !important;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.policy-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.policy-article,
+.policy-sidebar {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.policy-article h2 {
+  max-width: none;
+}
+
+.policy-article h3 {
+  margin-top: 2rem;
+  color: var(--navy);
+  font-size: 1.35rem;
+}
+
+.check-list {
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.9rem;
+}
+
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.policy-sidebar {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.policy-sidebar h2 {
+  font-size: 1.35rem;
+  max-width: none;
+}
+
+.policy-sidebar a {
+  display: block;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+}
+
+.policy-sidebar a:hover,
+.policy-sidebar a:focus-visible {
+  color: var(--blue);
+  background: var(--blue-soft);
+}
+
+/* Politikere */
+
+.people-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 380px);
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.person-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.person-card-body {
+  padding: 1.25rem;
+}
+
+.person-role {
+  margin-top: -0.2rem;
+  color: var(--gold) !important;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.82rem;
+}
+
+
+.text-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.35rem;
+}
+
+.section-button-light {
+  background: #ffffff;
+  color: var(--navy);
+  border-color: var(--border);
+}
+
+.foundation-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.15rem;
+  margin-top: 2rem;
+}
+
+.foundation-card,
+.statement-grid article {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1.35rem;
+}
+
+.foundation-card h3,
+.statement-grid h3 {
+  margin: 0 0 0.65rem;
+  color: var(--navy);
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.foundation-card p,
+.statement-grid p,
+.party-lede {
+  color: var(--muted);
+}
+
+.party-statement {
+  max-width: 1040px;
+}
+
+.party-lede {
+  max-width: 74ch;
+  font-size: 1.08rem;
+}
+
+.statement-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.15rem;
+  margin-top: 2rem;
 }
 
 /* Citatsektion */
@@ -521,6 +826,25 @@ blockquote::before {
   margin-bottom: 1.2rem;
   border-radius: 999px;
   background: var(--gold);
+}
+
+.quote-author {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: var(--gold);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.quote-author:hover,
+.quote-author:focus-visible {
+  color: #ffffff;
+  border-color: var(--gold);
+  transform: translateY(-1px);
 }
 
 /* Tilmeldingssektion */
@@ -650,119 +974,6 @@ blockquote::before {
   color: var(--gold);
 }
 
-/* Responsivt layout */
-
-@media (max-width: 900px) {
-  .menu-toggle {
-    display: inline-block;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 80px;
-    right: 1rem;
-    left: 1rem;
-    display: grid;
-    gap: 0.35rem;
-    padding: 1rem;
-    background: #ffffff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow);
-    transform: translateY(-16px);
-    opacity: 0;
-    pointer-events: none;
-    transition:
-      opacity 0.2s ease,
-      transform 0.2s ease;
-  }
-
-  .nav-links.open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .nav-links a {
-    display: block;
-    width: 100%;
-  }
-
-  .nav-button {
-    text-align: center;
-  }
-
-  .hero-grid,
-  .split-layout,
-  .quote-layout,
-  .join-grid,
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero h1 {
-    max-width: 14ch;
-  }
-
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .detail-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .image-stack img:first-child,
-  .image-stack img:last-child {
-    transform: none;
-  }
-}
-
-@media (max-width: 640px) {
-  .container {
-    width: min(100% - 1.25rem, 1160px);
-  }
-
-  .navbar {
-    min-height: 72px;
-  }
-
-  .hero {
-    padding: 4.25rem 0 3.75rem;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.25rem, 13vw, 3.2rem);
-  }
-
-  .brand-logo {
-    width: 48px;
-    height: 48px;
-  }
-
-  .brand-text {
-    font-size: 0.92rem;
-  }
-
-  .card-grid,
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-  }
-
-  .primary-button,
-  .secondary-button {
-    width: 100%;
-  }
-
-  .section {
-    padding: 3.5rem 0;
-  }
-}
-
 /* Privatlivspolitik */
 
 .legal-page {
@@ -825,4 +1036,147 @@ blockquote::before {
 
 .legal-return {
   margin-top: 2rem;
+}
+
+/* Responsivt layout */
+
+@media (max-width: 1000px) {
+  .policy-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .policy-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 80px;
+    right: 1rem;
+    left: 1rem;
+    display: grid;
+    gap: 0.35rem;
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    transform: translateY(-16px);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+  }
+
+  .nav-button {
+    text-align: center;
+  }
+
+  .hero-grid,
+  .split-layout,
+  .quote-layout,
+  .join-grid,
+  .footer-grid,
+  .page-hero-grid,
+  .policy-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    max-width: 14ch;
+  }
+
+  .issue-grid,
+  .foundation-grid,
+  .statement-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .policy-sidebar {
+    position: static;
+  }
+
+  .image-stack img:first-child,
+  .image-stack img:last-child {
+    transform: none;
+  }
+
+  .section-heading-row {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(100% - 1.25rem, 1160px);
+  }
+
+  .navbar {
+    min-height: 72px;
+  }
+
+  .hero {
+    padding: 4.25rem 0 3.75rem;
+  }
+
+  .hero h1,
+  .page-hero h1 {
+    font-size: clamp(2.25rem, 13vw, 3.2rem);
+  }
+
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-text {
+    font-size: 0.92rem;
+  }
+
+  .issue-grid,
+  .policy-grid,
+  .foundation-grid,
+  .statement-grid,
+  .form-row,
+  .people-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .section-button {
+    width: 100%;
+  }
+
+  .section,
+  .page-hero {
+    padding: 3.5rem 0;
+  }
 }

@@ -14,6 +14,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body id="top">
   <header class="site-header">
@@ -27,17 +28,31 @@
         <span class="brand-text">Statskonservative</span>
       </a>
 
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-links"
+        aria-label="Åbn navigationsmenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <ul class="nav-links" id="nav-links">
-        <li><a href="index.html#about">Om os</a></li>
-        <li><a href="index.html#priorities">Mærkesager</a></li>
-        <li><a href="index.html#programme">Program</a></li>
+        <li><a href="index.html">Forside</a></li>
+        <li><a href="partiet.html">Partiet</a></li>
+        <li><a href="politik.html">Politik</a></li>
+        <li><a href="politikere.html">Politikere</a></li>
         <li><a href="index.html#join">Tilmeld</a></li>
         <li><a href="index.html#contact" class="nav-button">Kontakt</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="legal-page">
+<main class="legal-page">
     <section class="section">
       <div class="container">
         <article class="legal-card">
@@ -184,6 +199,10 @@
       <div>
         <h2>Statskonservative</h2>
         <p>Familie. Kultur. Ansvar.</p>
+        <p>
+          Partigruppebogstaver: SK<br>
+          Ønsket listebogstav ved valg: T
+        </p>
       </div>
 
       <div>
@@ -192,12 +211,20 @@
           E-mail:
           <a href="mailto:kontakt@statskonservative.dk">kontakt@statskonservative.dk</a>
         </p>
+        <p>
+          Domæne:
+          <span>statskonservative.dk</span>
+        </p>
       </div>
 
       <div>
         <h3>Juridisk</h3>
         <p><a href="privatliv.html">Privatlivspolitik</a></p>
-        <p>&copy; <span id="year">2026</span> Statskonservative</p>
+        <p>
+          Henvendelser om personoplysninger kan sendes til
+          <a href="mailto:kontakt@statskonservative.dk">kontakt@statskonservative.dk</a>.
+        </p>
+        <p>&copy; <span id="year"></span> Statskonservative</p>
       </div>
     </div>
   </footer>
