@@ -69,6 +69,21 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function isValidPostcode(postcode) {
+  return postcode === "" || /^\d{4}$/.test(postcode);
+}
+
+function isValidInterestArea(interestArea) {
+  return [
+    "",
+    "membership",
+    "newsletter",
+    "volunteering",
+    "local-branch",
+    "general"
+  ].includes(interestArea);
+}
+
 if (signupForm) {
   signupForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -100,6 +115,16 @@ if (signupForm) {
 
     if (!isValidEmail(payload.email)) {
       setStatus("Skriv en gyldig e-mailadresse.", "error");
+      return;
+    }
+
+    if (!isValidPostcode(payload.postcode)) {
+      setStatus("Postnummer skal være præcis 4 cifre.", "error");
+      return;
+    }
+
+    if (!isValidInterestArea(payload.interestArea)) {
+      setStatus("Vælg et gyldigt interesseområde.", "error");
       return;
     }
 

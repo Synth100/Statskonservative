@@ -279,6 +279,7 @@
                 id="firstName"
                 name="firstName"
                 type="text"
+                autocomplete="given-name"
                 minlength="2"
                 maxlength="80"
                 required
@@ -291,6 +292,7 @@
                 id="lastName"
                 name="lastName"
                 type="text"
+                autocomplete="family-name"
                 minlength="2"
                 maxlength="80"
                 required
@@ -304,6 +306,7 @@
               id="email"
               name="email"
               type="email"
+              autocomplete="email"
               maxlength="150"
               required
             >
@@ -316,7 +319,11 @@
                 id="postcode"
                 name="postcode"
                 type="text"
-                maxlength="20"
+                inputmode="numeric"
+                autocomplete="postal-code"
+                pattern="[0-9]{4}"
+                maxlength="4"
+                title="Skriv et dansk postnummer med 4 cifre"
               >
             </div>
 
