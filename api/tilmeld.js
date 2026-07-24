@@ -275,7 +275,7 @@ export default async function handler(request, response) {
     }
 
     const consentText =
-      "Jeg giver udtrykkeligt samtykke til, at Statskonservative må behandle mine oplysninger for at kontakte mig om medlemskab, nyheder, aktiviteter og lokal opbygning. Jeg er informeret om, at min tilmelding kan afsløre politisk interesse, og at jeg til enhver tid kan trække mit samtykke tilbage ved at skrive til kontakt@statskonservative.dk. Jeg har læst privatlivspolitikken.";
+      "Jeg giver udtrykkeligt samtykke til, at Statskonservative må behandle mine oplysninger for at kontakte mig om medlemskab, nyheder, aktiviteter og lokal opbygning. Jeg er informeret om, at min tilmelding kan afsløre politisk interesse, og at jeg til enhver tid kan trække mit samtykke tilbage ved at skrive til kontakt@statskonservative.com. Jeg har læst privatlivspolitikken.";
 
     const payload = {
       first_name: firstName,
